@@ -55,7 +55,7 @@ export default function Home() {
 
     try {
       // Pass getConfig() here too
-      const response = await axios.post("http://localhost:5000/tasks", formData, getConfig());
+      const response = await axios.post("/tasks", formData, getConfig());
       setTasks([...tasks, response.data]);
       setNewTask("");
       setFile(null);
@@ -67,14 +67,14 @@ export default function Home() {
 
   const toggleTask = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:5000/tasks/${id}`, {}, getConfig());
+      const response = await axios.put(`/tasks/${id}`, {}, getConfig());
       setTasks(tasks.map(t => t._id === id ? response.data : t));
     } catch (error) { console.error(error); }
   };
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/tasks/${id}`, getConfig());
+      await axios.delete(`/tasks/${id}`, getConfig());
       setTasks(tasks.filter(t => t._id !== id));
     } catch (error) { console.error(error); }
   };
