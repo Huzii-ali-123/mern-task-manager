@@ -31,7 +31,7 @@ export default function Home() {
     const fetchTasks = async () => {
       try {
         // We now pass getConfig() to show the badge
-        const response = await axios.get("http://localhost:5000/tasks", getConfig());
+        const response = await axios.get("/tasks", getConfig());
         setTasks(response.data);
       } catch (error) {
         console.error("Error fetching tasks:", error);
@@ -102,7 +102,7 @@ export default function Home() {
               <span onClick={() => toggleTask(task._id)} className={`cursor-pointer select-none font-bold text-lg ${task.isCompleted ? "line-through text-slate-500" : ""}`}>{task.title}</span>
               <button onClick={() => deleteTask(task._id)} className="text-red-500">🗑️</button>
             </div>
-            {task.image && <img src={`http://localhost:5000${task.image}`} alt="attachment" className="w-full h-40 object-cover rounded-md border border-slate-700" />}
+            {task.image && <img src={axios.defaults.baseURL + task.image} alt="attachment" className="w-full h-40 object-cover rounded-md border border-slate-700" />}
           </div>
         ))}
         {tasks.length === 0 && <p className="text-center text-slate-500">No tasks found for you.</p>}

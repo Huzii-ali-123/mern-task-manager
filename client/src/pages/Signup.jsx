@@ -11,7 +11,7 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/register", { name, email, password });
+      await axios.post("/register", { name, email, password });
       alert("Registration Successful! Now Login.");
       navigate("/login"); // Send user to login page
     } catch (error) {
